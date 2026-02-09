@@ -27,6 +27,22 @@ A modern, full-stack web application for training custom spam detection models u
   
 ![Technology](image4.png)
 
+- Output:
+  
+![Output](image8.png)
+
+-
+
+![Output](image6.png)
+
+-
+
+![Output](image7.png)
+
+-
+
+![Output](image5.png)
+
 ## ✨ Features
 
 - **🧠 LSTM Neural Network**: Advanced deep learning architecture for superior accuracy
@@ -285,6 +301,7 @@ For questions or issues, please check the troubleshooting section above.
 **Built with ❤️ using TensorFlow, Flask, and modern web technologies**
 
 🌟 **Star this project if you find it useful!** 🌟
+
 
 
 
