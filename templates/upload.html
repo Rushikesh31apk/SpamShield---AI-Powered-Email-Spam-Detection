@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Dataset - SpamShield</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grain-overlay"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="nav-brand">
+                <div class="logo-icon">⚡</div>
+                <span class="brand-text">SpamShield</span>
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">← Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Upload Section -->
+    <section class="upload-section">
+        <div class="container">
+            <div class="upload-container" id="uploadContainer">
+                <div class="upload-header">
+                    <h1 class="upload-title">Upload Your Dataset</h1>
+                    <p class="upload-subtitle">Train a fast, accurate spam detection model on your email data</p>
+                </div>
+
+                <div class="upload-requirements">
+                    <div class="requirements-header">
+                        <h3>Dataset Requirements:</h3>
+                        <span class="tech-badge">Powered by scikit-learn</span>
+                    </div>
+                    <ul>
+                        <li>
+                            <span class="requirement-icon">📄</span>
+                            CSV file format
+                        </li>
+                        <li>
+                            <span class="requirement-icon">🏷️</span>
+                            Must contain <code>label</code> column (spam/ham)
+                        </li>
+                        <li>
+                            <span class="requirement-icon">📝</span>
+                            Must contain <code>text</code> column (email content)
+                        </li>
+                        <li>
+                            <span class="requirement-icon">⚡</span>
+                            Maximum file size: 16MB
+                        </li>
+                    </ul>
+                    
+                    <div class="sample-dataset">
+                        <p><strong>Sample CSV format:</strong></p>
+                        <pre><code>text,label
+"Win FREE iPhone!!! Click now!",spam
+"Meeting scheduled for tomorrow at 2 PM",ham
+"Your account statement is ready",ham
+"Congratulations! You won $1000!",spam</code></pre>
+                    </div>
+                </div>
+
+                <form id="uploadForm" class="upload-form">
+                    <div class="upload-dropzone" id="dropzone">
+                        <div class="dropzone-icon">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 15V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V15M17 8L12 3M12 3L7 8M12 3V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="dropzone-title">Drop your CSV file here</h3>
+                        <p class="dropzone-text">Supports datasets up to 16MB</p>
+                        <div class="dropzone-features">
+                            <span class="feature-tag">TF-IDF</span>
+                            <span class="feature-tag">Naive Bayes</span>
+                            <span class="feature-tag">Fast Training</span>
+                        </div>
+                        <input type="file" id="fileInput" accept=".csv" hidden>
+                        <button type="button" class="btn btn-secondary" id="browseBtn" data-tooltip="Click to select CSV file">
+                            <span>Browse Files</span>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M3 13L10 6L17 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="file-info" id="fileInfo" style="display: none;">
+                        <div class="file-details">
+                            <div class="file-icon">📄</div>
+                            <div class="file-meta">
+                                <div class="file-name" id="fileName"></div>
+                                <div class="file-info-row">
+                                    <span class="file-size" id="fileSize"></span>
+                                    <span class="file-status">Ready for training</span>
+                                </div>
+                            </div>
+                            <button type="button" class="remove-file" id="removeFile" data-tooltip="Remove file">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="file-actions">
+                            <span class="file-action-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Valid CSV format
+                            </span>
+                            <span class="file-action-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Contains required columns
+                            </span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-large" id="submitBtn" disabled data-tooltip="Select a CSV file first">
+                        <span>Start Training</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M13 11L21 3M21 3H15M21 3V9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <div class="training-info">
+                        <div class="info-item">
+                            <span class="info-icon">⚡</span>
+                            <span class="info-text">Training time: <strong>30-60 seconds</strong></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">📊</span>
+                            <span class="info-text">Model: <strong>TF-IDF + Naive Bayes</strong></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">🎯</span>
+                            <span class="info-text">Expected accuracy: <strong>90-95%+</strong></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Processing Section (Hidden Initially) -->
+            <div class="processing-container" id="processingContainer" style="display: none;">
+                <div class="processing-header">
+                    <h2 class="processing-title">Training Your Model</h2>
+                    <p class="processing-subtitle">This will only take a few seconds...</p>
+                </div>
+
+                <div class="processing-steps">
+                    <div class="process-step" id="step1">
+                        <div class="step-icon">
+                            <div class="spinner"></div>
+                        </div>
+                        <div class="step-info">
+                            <h4>Loading Dataset</h4>
+                            <p id="step1Desc">Reading and validating CSV file structure...</p>
+                        </div>
+                    </div>
+                    <div class="process-step" id="step2">
+                        <div class="step-icon">
+                            <div class="spinner"></div>
+                        </div>
+                        <div class="step-info">
+                            <h4>Analyzing & Balancing</h4>
+                            <p id="step2Desc">Calculating class distribution...</p>
+                        </div>
+                    </div>
+                    <div class="process-step" id="step3">
+                        <div class="step-icon">
+                            <div class="spinner"></div>
+                        </div>
+                        <div class="step-info">
+                            <h4>Text Processing</h4>
+                            <p id="step3Desc">Cleaning and preprocessing email text...</p>
+                        </div>
+                    </div>
+                    <div class="process-step" id="step4">
+                        <div class="step-icon">
+                            <div class="spinner"></div>
+                        </div>
+                        <div class="step-info">
+                            <h4>TF-IDF Vectorization</h4>
+                            <p id="step4Desc">Converting text to numerical features...</p>
+                        </div>
+                    </div>
+                    <div class="process-step" id="step5">
+                        <div class="step-icon">
+                            <div class="spinner"></div>
+                        </div>
+                        <div class="step-info">
+                            <h4>Training Classifier</h4>
+                            <p id="step5Desc">Training Naive Bayes model...</p>
+                        </div>
+                    </div>
+                    <div class="process-step" id="step6">
+                        <div class="step-icon">
+                            <div class="spinner"></div>
+                        </div>
+                        <div class="step-info">
+                            <h4>Generating Results</h4>
+                            <p id="step6Desc">Creating visualizations and metrics...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">0%</div>
+                </div>
+                
+                <div class="model-info">
+                    <div class="model-info-item">
+                        <span class="model-info-label">Algorithm:</span>
+                        <span class="model-info-value">Multinomial Naive Bayes</span>
+                    </div>
+                    <div class="model-info-item">
+                        <span class="model-info-label">Feature Extraction:</span>
+                        <span class="model-info-value">TF-IDF Vectorizer</span>
+                    </div>
+                    <div class="model-info-item">
+                        <span class="model-info-label">Processing:</span>
+                        <span class="model-info-value">Stopwords & Punctuation Removal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Section -->
+            <div class="error-container" id="errorContainer" style="display: none;">
+                <div class="error-icon">⚠️</div>
+                <h3 class="error-title">Something went wrong</h3>
+                <p class="error-message" id="errorMessage"></p>
+                <div class="error-actions">
+                    <button class="btn btn-primary" id="retryBtn">Try Again</button>
+                    <button class="btn btn-secondary" onclick="window.location.href='/'">Back to Home</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+</body>
+</html>

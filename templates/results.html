@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - SpamShield</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grain-overlay"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="nav-brand">
+                <div class="logo-icon">⚡</div>
+                <span class="brand-text">SpamShield</span>
+            </a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/upload" class="nav-link">Train New Model</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="container">
+            <div class="results-header">
+                <h1 class="results-title">Training Complete! 🎉</h1>
+                <p class="results-subtitle">Your Naive Bayes spam detection model is ready</p>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="metrics-grid" id="metricsGrid">
+                <div class="metric-card">
+                    <div class="metric-icon">🎯</div>
+                    <div class="metric-value" id="testAccuracy">--</div>
+                    <div class="metric-label">Test Accuracy</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">📊</div>
+                    <div class="metric-value" id="trainAccuracy">--</div>
+                    <div class="metric-label">Train Accuracy</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">📚</div>
+                    <div class="metric-value" id="vocabSize">--</div>
+                    <div class="metric-label">Vocabulary Size</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">⚖️</div>
+                    <div class="metric-value" id="balancedSamples">--</div>
+                    <div class="metric-label">Balanced Samples</div>
+                </div>
+            </div>
+
+            <!-- Dataset Information -->
+            <div class="results-section-card">
+                <h2 class="section-card-title">Dataset Analysis</h2>
+                <div class="dataset-info">
+                    <div class="info-item">
+                        <span class="info-label">Total Samples:</span>
+                        <span class="info-value" id="totalSamples">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Ham Samples:</span>
+                        <span class="info-value" id="hamSamples">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Spam Samples:</span>
+                        <span class="info-value" id="spamSamples">--</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Train/Test Split:</span>
+                        <span class="info-value"><span id="trainSamples">--</span> / <span id="testSamples">--</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Distribution Charts -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3 class="chart-title">Original Distribution</h3>
+                    <div class="chart-container">
+                        <img id="originalDistPlot" src="" alt="Original Distribution" style="display: none;">
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">Balanced Distribution</h3>
+                    <div class="chart-container">
+                        <img id="balancedDistPlot" src="" alt="Balanced Distribution" style="display: none;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Word Clouds -->
+            <div class="results-section-card">
+                <h2 class="section-card-title">Word Clouds</h2>
+                <p class="section-card-subtitle">Most frequent words in spam and legitimate emails</p>
+                <div class="wordclouds-grid">
+                    <div class="wordcloud-card">
+                        <h3 class="wordcloud-title">Non-Spam (Ham) Emails</h3>
+                        <div class="wordcloud-container">
+                            <img id="hamWordcloud" src="" alt="Non-Spam Word Cloud" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="wordcloud-card">
+                        <h3 class="wordcloud-title">Spam Emails</h3>
+                        <div class="wordcloud-container">
+                            <img id="spamWordcloud" src="" alt="Spam Word Cloud" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Performance -->
+            <div class="results-section-card">
+                <h2 class="section-card-title">Model Performance</h2>
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3 class="chart-title">Confusion Matrix</h3>
+                        <div class="chart-container">
+                            <img id="confusionMatrixPlot" src="" alt="Confusion Matrix" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3 class="chart-title">Feature Importance</h3>
+                        <div class="chart-container">
+                            <img id="featureImportancePlot" src="" alt="Feature Importance" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Predictions -->
+            <div class="results-section-card">
+                <h2 class="section-card-title">Sample Predictions</h2>
+                <p class="section-card-subtitle">Test examples with model predictions</p>
+                <div class="predictions-grid" id="predictionsGrid">
+                    <!-- Predictions will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Try Your Own Email -->
+            <div class="results-section-card">
+                <h2 class="section-card-title">Try Your Own Email</h2>
+                <p class="section-card-subtitle">Test the model with custom email text</p>
+                <div class="test-form">
+                    <textarea id="emailText" placeholder="Paste your email text here..." rows="4"></textarea>
+                    <button id="testButton" class="btn btn-primary">
+                        <span>Test Email</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m-6-6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div id="predictionResult" class="prediction-result" style="display: none;">
+                        <h3>Prediction: <span id="predictionLabel">--</span></h3>
+                        <div class="probability-bars">
+                            <div class="probability-bar">
+                                <span class="probability-label">Ham:</span>
+                                <div class="probability-track">
+                                    <div class="probability-fill ham" id="hamProbabilityBar"></div>
+                                    <span class="probability-value" id="hamProbability">0%</span>
+                                </div>
+                            </div>
+                            <div class="probability-bar">
+                                <span class="probability-label">Spam:</span>
+                                <div class="probability-track">
+                                    <div class="probability-fill spam" id="spamProbabilityBar"></div>
+                                    <span class="probability-value" id="spamProbability">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="processedText" class="processed-text"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="results-actions">
+                <a href="/upload" class="btn btn-primary">
+                    <span>Train Another Model</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10h12m-6-6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="/" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-icon">⚡</div>
+                    <span class="brand-text">SpamShield</span>
+                </div>
+                <p class="footer-text">Powered by scikit-learn & TF-IDF</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/results.js') }}"></script>
+</body>
+</html>

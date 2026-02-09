@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpamShield - AI-Powered Email Protection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grain-overlay"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo-icon">⚡</div>
+                <span class="brand-text">SpamShield</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#tech" class="nav-link">Technology</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Developed by Roshani
+                </div>
+                <h1 class="hero-title">
+                    Stop Spam.<br>
+                    <span class="gradient-text">Protect Inbox.</span>
+                </h1>
+                <p class="hero-description">
+                    Fast, accurate spam detection using Naive Bayes classification. 
+                    Train custom models on your data with 95%+ accuracy in seconds.
+                </p>
+                <div class="hero-actions">
+                    <a href="/upload" class="btn btn-primary">
+                        <span>Try Now</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10h12m-6-6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#how-it-works" class="btn btn-secondary">
+                        Learn More
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value">95%+</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">&lt;30s</div>
+                        <div class="stat-label">Training Time</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">TF-IDF</div>
+                        <div class="stat-label">Feature Extraction</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="visual-card card-1">
+                    <div class="card-header">
+                        <div class="card-status spam">SPAM</div>
+                        <div class="card-confidence">96.7%</div>
+                    </div>
+                    <div class="card-text">Win a FREE iPhone! Click now!!!</div>
+                </div>
+                <div class="visual-card card-2">
+                    <div class="card-header">
+                        <div class="card-status ham">SAFE</div>
+                        <div class="card-confidence">97.2%</div>
+                    </div>
+                    <div class="card-text">Meeting scheduled for tomorrow at 2 PM</div>
+                </div>
+                <div class="floating-badge badge-1">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 11L12 14L22 4M21 12V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Fast & Accurate
+                </div>
+                <div class="floating-badge badge-2">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
+                    </svg>
+                    Lightweight AI
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-subtitle">Everything you need for intelligent spam detection</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon icon-1">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 11L12 14L22 4M21 12V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Naive Bayes Classification</h3>
+                    <p class="feature-description">Efficient probabilistic classifier that works remarkably well for text classification tasks like spam detection.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-2">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 16V8C21 6.89543 20.1046 6 19 6H5C3.89543 6 3 6.89543 3 8V16C3 17.1046 3.89543 18 5 18H19C20.1046 18 21 17.1046 21 16Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M3 8L12 13L21 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">TF-IDF Vectorization</h3>
+                    <p class="feature-description">Intelligent text-to-feature conversion that weights important words while filtering out noise.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-3">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 3V21M21 21H3M7 13L12 8L17 13L21 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Real-Time Visualization</h3>
+                    <p class="feature-description">Interactive charts, word clouds, and performance metrics to understand your model's behavior.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-4">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Instant Training</h3>
+                    <p class="feature-description">Train on thousands of emails in under 30 seconds with optimized scikit-learn algorithms.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-5">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 8V12L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Auto-Balancing</h3>
+                    <p class="feature-description">Intelligent dataset balancing ensures equal representation of spam and legitimate emails.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-6">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">95%+ Accuracy</h3>
+                    <p class="feature-description">Excellent performance with validated test accuracy on real-world email datasets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">From dataset to detection in 4 simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Upload Dataset</h3>
+                        <p class="step-description">Upload your CSV file containing labeled emails (spam/ham). We'll handle the rest automatically.</p>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Text Processing</h3>
+                        <p class="step-description">Automatic preprocessing with stopword removal, punctuation removal, and text normalization.</p>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Feature Extraction</h3>
+                        <p class="step-description">TF-IDF vectorization converts processed text into numerical features for the classifier.</p>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Model Training & Results</h3>
+                        <p class="step-description">Naive Bayes trains instantly. View accuracy metrics, confusion matrix, and word clouds.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="tech" class="technology">
+        <div class="container">
+            <div class="tech-content">
+                <div class="tech-info">
+                    <h2 class="section-title">Built with<br>Proven ML Technology</h2>
+                    <p class="tech-description">
+                        SpamShield leverages scikit-learn and proven machine learning algorithms 
+                        to deliver fast, accurate spam detection. Our TF-IDF + Naive Bayes pipeline 
+                        is optimized for text classification with minimal resource usage.
+                    </p>
+                    <div class="tech-stack">
+                        <div class="tech-item">
+                            <div class="tech-item-icon">🔬</div>
+                            <div class="tech-item-text">
+                                <div class="tech-item-title">scikit-learn</div>
+                                <div class="tech-item-desc">Machine Learning Framework</div>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">📝</div>
+                            <div class="tech-item-text">
+                                <div class="tech-item-title">TF-IDF</div>
+                                <div class="tech-item-desc">Text Feature Extraction</div>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">📊</div>
+                            <div class="tech-item-text">
+                                <div class="tech-item-title">Naive Bayes</div>
+                                <div class="tech-item-desc">Probabilistic Classification</div>
+                            </div>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-item-icon">⚡</div>
+                            <div class="tech-item-text">
+                                <div class="tech-item-title">Lightning Fast</div>
+                                <div class="tech-item-desc">Trains in Seconds</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-visual">
+                    <div class="ml-pipeline">
+                        <div class="pipeline-step">
+                            <div class="step-label">Text Input</div>
+                            <div class="step-visual">
+                                <div class="text-sample">
+                                    <span class="word">Win</span>
+                                    <span class="word">FREE</span>
+                                    <span class="word">iPhone</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-step">
+                            <div class="step-label">TF-IDF</div>
+                            <div class="step-visual">
+                                <div class="vector-grid">
+                                    <div class="vector-item">0.85</div>
+                                    <div class="vector-item">0.92</div>
+                                    <div class="vector-item">0.78</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-step">
+                            <div class="step-label">Naive Bayes</div>
+                            <div class="step-visual">
+                                <div class="probability-gauge">
+                                    <div class="gauge-label">SPAM</div>
+                                    <div class="gauge-bar">
+                                        <div class="gauge-fill" style="width: 96%"></div>
+                                    </div>
+                                    <div class="gauge-value">96%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pipeline-arrow">→</div>
+                        <div class="pipeline-step">
+                            <div class="step-label">Result</div>
+                            <div class="step-visual">
+                                <div class="result-badge spam">
+                                    🚨 SPAM
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to train your spam detector?</h2>
+                <p class="cta-description">Upload your dataset and get results in seconds</p>
+                <a href="/upload" class="btn btn-primary btn-large">
+                    <span>Get Started Now</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-icon">⚡</div>
+                    <span class="brand-text">SpamShield</span>
+                </div>
+                <div class="footer-info">
+                    <p class="footer-text">© 2026 SpamShield. All rights reserved | Developed by Roshani</p>
+                 
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
