@@ -8,7 +8,7 @@ A modern, full-stack web application for training custom spam detection models u
 
 ## Images
 
-
+![Home](image1.png)
 
 ## ✨ Features
 
@@ -268,5 +268,6 @@ For questions or issues, please check the troubleshooting section above.
 **Built with ❤️ using TensorFlow, Flask, and modern web technologies**
 
 🌟 **Star this project if you find it useful!** 🌟
+
 
 
