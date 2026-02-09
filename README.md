@@ -6,6 +6,10 @@ A modern, full-stack web application for training custom spam detection models u
 ![Flask](https://img.shields.io/badge/Flask-3.0-green?style=for-the-badge&logo=flask)
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python)
 
+## Images
+
+![Home](image1.png)
+
 ## ✨ Features
 
 - **🧠 LSTM Neural Network**: Advanced deep learning architecture for superior accuracy
@@ -264,3 +268,4 @@ For questions or issues, please check the troubleshooting section above.
 **Built with ❤️ using TensorFlow, Flask, and modern web technologies**
 
 🌟 **Star this project if you find it useful!** 🌟
+
