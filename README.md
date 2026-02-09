@@ -7,8 +7,17 @@ A modern, full-stack web application for training custom spam detection models u
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python)
 
 ## Images
+- Home page
+![Home](image.png)
 
-![Home](image1.png)
+- Powerful Features 
+![Features](image2.png)
+
+- How It Works
+![How It Works](image3.png)
+
+- Technology
+![Technology](image4.png)
 
 ## ✨ Features
 
@@ -268,6 +277,7 @@ For questions or issues, please check the troubleshooting section above.
 **Built with ❤️ using TensorFlow, Flask, and modern web technologies**
 
 🌟 **Star this project if you find it useful!** 🌟
+
 
 
 
